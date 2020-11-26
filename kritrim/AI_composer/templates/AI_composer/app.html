@@ -1,0 +1,26 @@
+{% extends 'AI_composer/base.html' %}
+
+    {% block content %}
+ 
+      <button type='button' id='play/stop'>PLAY/STOP</button>
+      <button type='button' id='pause/resume'>PAUSE/RESUME</button>
+      <button type='button' id='random_song'><a href='/application'>random_song</a></button>
+ 
+      <input type="range" value="25">
+
+      <div id="tester" style="width:100%;height:500;"></div>
+      <div id='container'>
+
+      </div>
+      <script>
+        var data='{{data|escapejs}}';
+        data = data.replace(/'/g, '"');
+      </script>
+
+
+      
+
+    {% endblock content %}
+
+    
+

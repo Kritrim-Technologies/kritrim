@@ -1,2 +1,2 @@
 # kritrim
-music generation using deep learning
+a deployement for final year project

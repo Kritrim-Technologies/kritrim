@@ -1,0 +1,30 @@
+
+
+#container{
+    position:absolute;
+    height:150px;
+    border:3px solid #f88;
+    top:60%;
+    overflow:hidden;
+  }
+.whitenote{
+    height:100%;
+    width: 30px;
+    background:white;
+    float:left;
+    border-right:1px solid black;
+    position:relative;
+  }
+
+.blacknote{
+    position:absolute;
+    height:65%;
+    width: 55%;
+    z-index:1;
+    background:grey;
+    left:71%
+}
+
+#ex1Slider .slider-selection {
+	background: #BABABA;
+}
