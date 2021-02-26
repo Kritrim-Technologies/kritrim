@@ -138,11 +138,11 @@ dmypy.json
 cython_debug/
 
 
-
+.h5/
 .mid/
 .midi/
 .npy/
-
+/kritrim/model
 /kritrim/media
 
 /research/variational autoencoder/dataset

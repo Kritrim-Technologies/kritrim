@@ -4,11 +4,9 @@ for(i=0;i<20;i++){
     slider[i]=document.getElementById('slider'+String(i));
     
     slider[i].addEventListener('mouseup',function(){
-        play=false;
-        for(j=30;j<112;j++){
-            synth.triggerRelease(j)
-        }
-
+       
+        
+        pause=true;
         $.ajax({
             url: '/application/',
             data: {
@@ -22,6 +20,11 @@ for(i=0;i<20;i++){
             
           });
           
-        play=true;
+          setTimeout(() => {  console.log("World!"); pause=false;}, 1500);
+          
+          
+ 
+       
+       
     });
 }

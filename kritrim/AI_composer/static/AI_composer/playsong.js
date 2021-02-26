@@ -1,5 +1,7 @@
 let _play=false;
 let pause=false;
+let counter=0;
+let var_time=1;
 obj=JSON.parse(data)
 play_stop_elem=document.getElementsByClassName('play/stop')
 pause_resume_elem=document.getElementsByClassName('pause/resume')
@@ -7,12 +9,19 @@ random_song=document.getElementsByClassName('random_song')
 random_song[0].addEventListener('click',function(){
     synth.releaseAll()
 })
+
+function play_stop(){
+    
+    _play=!_play;
+    pause=false;
+
+}
+
 play_stop_elem[0].addEventListener('click',function(){
     if(_play==false){
         playsong();
     }
-    _play=!_play;
-    pause=false;
+    play_stop();
 });
 
 pause_resume_elem[0].addEventListener('click',function(){
@@ -21,14 +30,21 @@ pause_resume_elem[0].addEventListener('click',function(){
 
 function playsong(){
   
-    let counter=0
-    let var_time=1
+    
+    
     var interval=setInterval(function(){
-        var element=obj[counter];
+        if(counter>obj.length){
+            counter=0;
+            var_time=0;
+        }else{
+            var element=obj[counter];
            
-        var tick=element.time;
-        var note=element.note;
-        var velocity=element.velocity;
+            var tick=element.time;
+            var note=element.note;
+            var velocity=element.velocity;
+            
+        }
+        
         
         elem=document.getElementById(note);
         is_sharp=(elem.dataset.is_sharp);
@@ -51,6 +67,7 @@ function playsong(){
             var_time+=20;   
         }
         else{  
+            synth.releaseAll();
             noteUp(elem,is_sharp)
             
         }

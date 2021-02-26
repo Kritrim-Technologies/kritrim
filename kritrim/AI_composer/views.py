@@ -11,6 +11,7 @@ from mido import MidiFile,MidiTrack,Message
 
 from tensorflow import Graph,Session
 from django.http import JsonResponse
+import matplotlib.pyplot as plt
 
 input=np.zeros((1,100))
 model_graph=Graph()
@@ -26,6 +27,13 @@ with model_graph.as_default():
 
 
     
+def plot_image(sample):
+    fig,axes=plt.subplots(nrows=2,ncols=8,figsize=(20,2),dpi=150)
+
+    for i in range(16):
+        axes[i//8,i%8].imshow(sample[i,:,:].T,cmap='gray')
+        axes[i//8,i%8].set_axis_off()
+    fig.savefig('input/midi_piano_roll.png')
 
 def home(request):
     return render(request,'AI_composer/home.html')
@@ -45,11 +53,11 @@ def music_composer(request):
     data=np.zeros((16,96,96))
     data[:,:,30:65]=song
     
-    mid=samples_to_midi(data,str(i)+'.mid',16,0.1)
+    mid=samples_to_midi(data,str(i)+'.mid',16,0.18)
     
     data=getJSON(mid)
     context={'data':(data)}
-  
+    
     if(request.GET):
         print("GET")
         position = int(request.GET.get('position', None))
@@ -57,8 +65,9 @@ def music_composer(request):
         
         with model_graph.as_default():
             with tf_session.as_default():
-                x_vecs[i:i+1,position]=value/100
+                x_vecs[i:i+1,position]=value/100-0.05
                 song=model.predict(x_vecs[i:i+1])[0]
+              
         data=np.zeros((16,96,96))
         data[:,:,30:65]=song
         if(position==0):
