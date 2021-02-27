@@ -5,8 +5,9 @@ for(i=0;i<20;i++){
     
     slider[i].addEventListener('mouseup',function(){
        
+        clearInterval(interval)
+        synth.releaseAll()
         
-        pause=true;
         $.ajax({
             url: '/application/',
             data: {
@@ -18,9 +19,11 @@ for(i=0;i<20;i++){
                 obj=da.data
             }
             
-          });
+            });
+        
+        
           
-          setTimeout(() => {  console.log("World!"); pause=false;}, 1500);
+          setTimeout(() => {  playsong(); }, 500);
           
           
  

@@ -2,6 +2,8 @@ let _play=false;
 let pause=false;
 let counter=0;
 let var_time=1;
+let prev_var_time=0;
+var interval=0
 obj=JSON.parse(data)
 play_stop_elem=document.getElementsByClassName('play/stop')
 pause_resume_elem=document.getElementsByClassName('pause/resume')
@@ -30,9 +32,10 @@ pause_resume_elem[0].addEventListener('click',function(){
 
 function playsong(){
   
+    counter=0;
+    var_time=0;
     
-    
-    var interval=setInterval(function(){
+    interval=setInterval(function(){
         if(counter>obj.length){
             counter=0;
             var_time=0;

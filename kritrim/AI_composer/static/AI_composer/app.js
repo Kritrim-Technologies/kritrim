@@ -17,7 +17,7 @@ const max_octave=7;
 //Draw sliders
 var slider_html="";
 const n_slider=20
-random_slider_value=Array(n_slider).fill().map(() => (0))
+random_slider_value=Array(n_slider).fill().map(() => (50))
 for(i=0;i<n_slider;i++){
     slider_html+=`<input type="range" value='${random_slider_value[i]}' class='vranger' id='${'slider'+String(i)}'>`
     
@@ -60,16 +60,15 @@ document.addEventListener('keydown',e=>{
     const key=e.key;
     const whiteKeyIndex=WHITE_KEYS.indexOf(key);
     const blackKeyIndex=BLACK_KEYS.indexOf(key);
-    if (whiteKeyIndex>-1) {
-        note=whitekeys[whiteKeyIndex];
-        isSharp=false;
-    }
-    
     if(blackKeyIndex>-1)
     {
         note=blackkeys[blackKeyIndex];
         isSharp=true;
     } 
+    else if (whiteKeyIndex>-1) {
+        note=whitekeys[whiteKeyIndex];
+        isSharp=false;
+    }
     
     elem=document.getElementById(note);
     if (elem != null) noteDown(elem,isSharp);
@@ -83,13 +82,13 @@ document.addEventListener('keyup',e=>{
     const key=e.key;
     const whiteKeyIndex=WHITE_KEYS.indexOf(key);
     const blackKeyIndex=BLACK_KEYS.indexOf(key);
-    if (whiteKeyIndex>-1){ 
-        note=whitekeys[whiteKeyIndex];
-        isSharp=false;
-    }
-    if(blackKeyIndex>-1){ 
+    if (blackKeyIndex>-1){ 
         note=blackkeys[blackKeyIndex];
         isSharp=true;
+    }
+    else if(whiteKeyIndex>-1){ 
+        note=whitekeys[whiteKeyIndex];
+        isSharp=false;
     }
     elem=document.getElementById(note);
   
@@ -101,12 +100,14 @@ document.addEventListener('keyup',e=>{
 function noteDown(elem,isSharp){
     //var note=elem.dataset.note;
     var note=elem.id;
-    
+    if(note[1]=="#"){
+        isSharp=true;
+    }
     if(isSharp==true) {
         elem.style.background='black'
     
     }   else {
-        elem.style.background='#ccc'
+        elem.style.background='blue'
     
     }    //synth.triggerAttackRelease(note,'16n');
     synth.triggerAttack(note);
@@ -115,11 +116,15 @@ function noteDown(elem,isSharp){
 
 function noteUp(elem,isSharp){
     var note=elem.id;
+    console.log(note)
+    if(note[1]=="#"){
+        isSharp=true;
+    }
     if(isSharp==true){
         elem.style.background='grey';
     }
     else {
-        elem.style.background='white';
+        elem.style.background='lightyellow';
     }
     synth.triggerRelease(note);    
 }

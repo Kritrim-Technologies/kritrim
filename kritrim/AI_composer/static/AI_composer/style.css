@@ -5,12 +5,16 @@ body{
 
 .button_container{
   text-align: center;
+  margin: auto;
   margin-top: 1%;
+  width:600px;
+  background-color:floralwhite;
 }
 
 .btn{
   border: 1px solid #3498db;
-  background:none;
+  
+  background:lightgreen;
   padding: 10px 20px;
   font-family:"montserrat";
   cursor: pointer;
@@ -19,17 +23,19 @@ body{
  
 }
 .btn:hover{
-  color:rgb(19, 235, 91);
+  background: lightseagreen;
+  
 }
 
 
 
 #slider_container{
-  height: 30px;
+  height: 200px;
   min-height: 150px;
   width: 600px;
   margin: auto;
   margin-top: 1%;
+  background-color: black;
 
 }
 .vranger {
@@ -37,34 +43,48 @@ body{
   position: relative;
   color: black;
   width: 10%;
-  margin-top: 100px;
+  margin-top: 50px;
    transform: rotate(270deg);
   -moz-transform: rotate(270deg); /*do same for other browsers if required*/
 }
+/*
+#grid_container{
+    margin: auto;
+    margin-top: 1%;
+    height:144px;
+    width: 768px;
+    border:1px solid black;
+    overflow:hidden;
+    
+}
+#grid{
+ 
+  
+
+}
+*/
 
 #piano_container{
-    
-    
     margin: auto;
-    margin-top: 20%;
+    margin-top: 2%;
     height:60px;
     width: 840px;
-    border:1px solid black;
+    border:0.01px solid grey;
     overflow:hidden;
   }
 
 .whitenote{
     height:100%;
     width: 20px;
-    background:white;
+    background:lightyellow;
     float:left;
-    border-right:1px solid black;
+    border-right:1px solid grey;
     position:relative;
   }
 
 .blacknote{
     position:absolute;
-    border: 1px solid black;
+    border: 1px solid grey;
     height:65%;
     width: 55%;
     z-index:1;

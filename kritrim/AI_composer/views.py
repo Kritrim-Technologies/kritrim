@@ -21,7 +21,8 @@ with model_graph.as_default():
 
         model=load_model('model/dec.h5')
         x_vecs=np.load('model/input (1).npy')
-        print(x_vecs.shape)
+        x_vecs=np.zeros((1,100))
+        sort_index=np.load('model/index.npy')
 
 
 
@@ -46,10 +47,10 @@ def about(request):
 def music_composer(request):
     
     i=random.randrange(10)
-    
+   
     with model_graph.as_default():
         with tf_session.as_default():
-            song=model.predict(x_vecs[i:i+1])[0]
+            song=model.predict(x_vecs)[0]
     data=np.zeros((16,96,96))
     data[:,:,30:65]=song
     
@@ -65,8 +66,8 @@ def music_composer(request):
         
         with model_graph.as_default():
             with tf_session.as_default():
-                x_vecs[i:i+1,position]=value/100-0.05
-                song=model.predict(x_vecs[i:i+1])[0]
+                x_vecs[0,sort_index[position]]=value/100-0.05
+                song=model.predict(x_vecs)[0]
               
         data=np.zeros((16,96,96))
         data[:,:,30:65]=song
