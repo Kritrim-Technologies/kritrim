@@ -31,7 +31,9 @@ pause_resume_elem[0].addEventListener('click',function(){
 });
 
 function playsong(){
-  
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    ctx.fillStyle = "rgb(200,0,0)";
+    ctx.beginPath();
     counter=0;
     var_time=0;
     
@@ -67,13 +69,17 @@ function playsong(){
                 counter=0
                 var_time=0
             }
-            var_time+=20;   
+            var_time+=20;  
+            console.log(note) 
+            
         }
         else{  
             synth.releaseAll();
             noteUp(elem,is_sharp)
             
         }
+        ctx.rect(var_time/40, (Tone.Frequency(note).toMidi()-30)*2 ,0.5,2)
+        ctx.fill()
         if(_play==false){
 
             noteUp(elem,is_sharp)

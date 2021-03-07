@@ -47,13 +47,13 @@ body{
    transform: rotate(270deg);
   -moz-transform: rotate(270deg); /*do same for other browsers if required*/
 }
-/*
+
 #grid_container{
     margin: auto;
     margin-top: 1%;
     height:144px;
     width: 768px;
-    border:1px solid black;
+   
     overflow:hidden;
     
 }
@@ -62,7 +62,7 @@ body{
   
 
 }
-*/
+
 
 #piano_container{
     margin: auto;
